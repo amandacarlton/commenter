@@ -1,0 +1,54 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+img{
+  width:200px;
+  height:200px;
+  border: none;
+}
+
+div{
+  border: 1px solid black;
+  margin: 10px;
+  padding: 5px;
+}
+
+.pic{
+  display:inline-block;
+  float: left;
+}
+
+.info{
+  display: inline-block;
+  float: left;
+  overflow: auto;
+  width:70%;
+}
+
+.outside{
+  display: block;
+  overflow: auto;
+}
+
+.title{
+  display: inline-block;
+  margin:0px;
+  vertical-align: top;
+}
+
+.author{
+  display: inline-block;
+  float: right;
+  margin: 0px;
+}
+
+.description{
+  margin: 0px;
+  margin-top: 10px;
+}
