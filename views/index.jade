@@ -1,50 +1,58 @@
 extends layout
 
 block content
-  div
-    form(action="" method="post")
-      label(for="title") Title
-      p
-      input(type="text" ng-model="title" name="title" id="title")
-      p
-      label(for="author") Author
-      p
-      input(type="text" ng-model="author" name="author" id="author")
-      p
-      label(for="image") Image URL
-      p
-      input(type="text" ng-model="image" name="image" id="image")
-      p
-      label(for="description") Description
-      p
-      input(type="text" ng-model="description" name="description" id="description")
-      p
-      input(type="submit" value="Post")
   div(ng-controller="Post")
-    div.outside(ng-repeat="post in posts")
-      div.pic
+    div
+      form(ng-submit="addcomment()")
+        label(for="title") Title
         p
-        img(ng-src="{{post.image}}" alt="Description")
-      div.info
-        div.title
-          p 
-          {{post.title}} | 
-          i.fa.fa-arrow-up 
-          &nbsp;
-          i.fa.fa-arrow-down
-        div.author
-          p 
-          {{post.author}}
-        div.description
+        input(type="text" ng-model="title" name="title" id="title")
+        p
+        label(for="author") Author
+        p
+        input(type="text" ng-model="author" name="author" id="author")
+        p
+        label(for="image") Image URL
+        p
+        input(type="text" ng-model="image" name="image" id="image")
+        p
+        label(for="description") Description
+        p
+        input(type="text" ng-model="description" name="description" id="description")
+        p
+        input(type="submit" value="Post")
+    div
+      div.outside(ng-repeat="post in posts")
+        div.pic
           p
-          Strong Description: 
-          {{post.description}}
-          p
-          i.fa.fa-calendar &nbsp; {{post.date|date:"fullDate"}} &nbsp| &nbsp;
-          i.fa.fa-comment &nbsp; | &nbsp;
-          i.fa.fa-pencil &nbsp Add a comment
+          img(ng-src="{{post.image}}" alt="Description")
+        div.info
+          div.title
+            p 
+            {{post.title}} | 
+            i(ng-click="votecount(post)").fa.fa-arrow-up 
+            &nbsp;
+            i(ng-click="downvote(post)").fa.fa-arrow-down
+            {{post.votes}}
+          div.author
+            p 
+            {{post.author}}
+          div.description
+            p
+            Strong Description: 
+            {{post.description}}
+            p
+            i.fa.fa-calendar &nbsp; {{post.date|date:"fullDate"}} &nbsp| &nbsp;
+            i.fa.fa-comment &nbsp; 
+            {{post.comments.length}} &nbsp;
+            ng-pluralize(count="post.comments.length"
+                     when="{1: 'comment',\
+                       'other': 'comments'}")
+            &nbsp; | &nbsp;
+            i.fa.fa-pencil &nbsp Add a comment
 
-      
-      
+        
+  script(src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js')
+  script(src='//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.js')
   script(src="../javascripts/angular.js") 
