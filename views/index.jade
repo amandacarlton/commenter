@@ -2,7 +2,6 @@ extends layout
 
 block content
   div.container(ng-controller="things")
-    
     p(ng-click="showform()") Add a comment
     select(ng-model="sort" ng-init="sort='votes'")
       option(value='votes') Votes

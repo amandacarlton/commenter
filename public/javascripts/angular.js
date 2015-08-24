@@ -36,24 +36,24 @@ app.controller("things", function ($scope) {
 
 
 $scope.addcomment = function(isValid) {
- if (isValid) {
-  $scope.posts.push(
-    {
-      title: $scope.title,
-      author: $scope.author,
-      description: $scope.description,
-      date: new Date(),
-      image: $scope.image,
-      votes: 0,
-      comments: []
-    });
-    console.log($scope.title);
-    console.log(($scope.posts));
-    $scope.title = '';
-    $scope.author='';
-    $scope.description='';
-    $scope.image='';
-  }
+  if (isValid) {
+    $scope.posts.push(
+      {
+        title: $scope.title,
+        author: $scope.author,
+        description: $scope.description,
+        date: new Date(),
+        image: $scope.image,
+        votes: 0,
+        comments: []
+      });
+      console.log($scope.title);
+      console.log(($scope.posts));
+      $scope.title = '';
+      $scope.author='';
+      $scope.description='';
+      $scope.image='';
+    }
   };
 
   $scope.clicked=false;
@@ -75,7 +75,9 @@ $scope.addcomment = function(isValid) {
   };
 
   $scope.seecomments=false;
+  console.log($scope);
   $scope.showseecomments=function () {
+    console.log($scope);
     if($scope.seecomments===false){
       $scope.seecomments=true;
     }else{
