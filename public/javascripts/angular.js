@@ -17,6 +17,7 @@ app.controller("things", function ($scope) {
     title:"hi",
     author:"Amanda",
     description:"yo",
+    votes:0,
     comments:[
       {author: 'me',
       comment: 'sucks'

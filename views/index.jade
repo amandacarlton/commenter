@@ -42,6 +42,7 @@ block content
           {{post.votes}}
         div.author
           p 
+          Strong By: 
           {{post.author}}
         div.description
           p
@@ -61,6 +62,7 @@ block content
              input(type="text" ng-model="commentAuthor")
              label(for="commentText") Comment
              input(type="text" ng-model="commentText")
+             p
              input(type="submit" value="Comment")
           div(ng-show="seecomments" ng-repeat="comment in post.comments")
             {{comment.author}}: {{comment.comment}}
