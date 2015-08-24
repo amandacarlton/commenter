@@ -1,5 +1,12 @@
 var app = angular.module("reddit", ['ngAnimate']);
 
+
+app.filter('fromNow', function() {
+  return function(date) {
+    return moment(date).fromNow();
+  };
+});
+
 app.controller("things", function ($scope) {
 
   $scope.pushComment = function (post) {

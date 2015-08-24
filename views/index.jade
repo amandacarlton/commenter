@@ -49,7 +49,7 @@ block content
           Strong Description: 
           {{post.description}}
           p
-          i.fa.fa-calendar &nbsp; {{post.date|date:"fullDate"}} &nbsp| &nbsp;
+          i.fa.fa-calendar &nbsp; {{post.date|fromNow}} &nbsp| &nbsp;
           i(ng-click="showseecomments()").fa.fa-comment &nbsp; 
           {{post.comments.length}} &nbsp;
           ng-pluralize(count="post.comments.length"
@@ -72,4 +72,5 @@ block content
   script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.js')
   script(src='/bower_components/angular-animate/angular-animate.js')
   script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js')
+  script(src='../javascripts/moment.js')
   script(src="../javascripts/angular.js") 
