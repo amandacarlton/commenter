@@ -15,8 +15,8 @@ app.controller("things", function ($scope) {
       author:$scope.commentAuthor,
       comment:$scope.commentText
     });
-      $scope.commentAuthor="";
-      $scope.commentText="";
+    $scope.commentAuthor="";
+    $scope.commentText="";
   };
 
 
@@ -29,12 +29,13 @@ app.controller("things", function ($scope) {
       {author: 'me',
       comment: 'sucks'
     }
-    ]
-  }];
+  ]
+}];
 
 
 
-  $scope.addcomment = function() {
+$scope.addcomment = function(isValid) {
+ if (isValid) {
   $scope.posts.push(
     {
       title: $scope.title,
@@ -45,80 +46,83 @@ app.controller("things", function ($scope) {
       votes: 0,
       comments: []
     });
-   console.log($scope.title);
-   console.log(($scope.posts));
-  $scope.title = '';
-  $scope.author='';
-  $scope.description='';
-  $scope.image='';
-};
+    console.log($scope.title);
+    console.log(($scope.posts));
+    $scope.title = '';
+    $scope.author='';
+    $scope.description='';
+    $scope.image='';
+  }
+  };
 
   $scope.clicked=false;
   $scope.showform=function () {
     if($scope.clicked===false){
-    $scope.clicked=true;
-  }else{
-    $scope.clicked=false;
-  }
-};
+      $scope.clicked=true;
+    }else{
+      $scope.clicked=false;
+    }
+  };
 
   $scope.commentbox=false;
   $scope.showcomment=function () {
     if($scope.commentbox===false){
-    $scope.commentbox=true;
-  }else{
-    $scope.commentbox=false;
-  }
+      $scope.commentbox=true;
+    }else{
+      $scope.commentbox=false;
+    }
   };
 
   $scope.seecomments=false;
   $scope.showseecomments=function () {
     if($scope.seecomments===false){
-    $scope.seecomments=true;
-  }else{
-    $scope.seecomments=false;
-  }
+      $scope.seecomments=true;
+    }else{
+      $scope.seecomments=false;
+    }
   };
 
 
-//   $scope.posts = [
-//   {
-//     title: "Lets Go Swimming",
-//     image: "http://www.atlanticainc.net/assets/swimming-pool-night-lighting.jpg",
-//     author: "Amanda Carlton",
-//     description: "marco poolo",
-//     date: new Date(),
-//     comments:[],
-//     votes:0
-//   },
-//
-//   {
-//     title: "River Otters",
-//     image: "http://www.jamesriverassociation.org/img/river-otter.jpg",
-//     author: "Samantha Genduso",
-//     description: "OT OT OT TO TOT ",
-//     date: new Date(),
-//     comments:[],
-//     votes:0
-//   },
-//   {
-//     title: "Lunch Boxes",
-//     image:"https://s-media-cache-ak0.pinimg.com/236x/73/b9/c2/73b9c268163bf0af8e4609b6a3b92469.jpg",
-//     author: "Lisa Frank",
-//     description: "Aliens are from China",
-//     date: new Date(),
-//     comments:[],
-//     votes:0
-//   },
-// ];
+  //   $scope.posts = [
+  //   {
+  //     title: "Lets Go Swimming",
+  //     image: "http://www.atlanticainc.net/assets/swimming-pool-night-lighting.jpg",
+  //     author: "Amanda Carlton",
+  //     description: "marco poolo",
+  //     date: new Date(),
+  //     comments:[],
+  //     votes:0
+  //   },
+  //
+  //   {
+  //     title: "River Otters",
+  //     image: "http://www.jamesriverassociation.org/img/river-otter.jpg",
+  //     author: "Samantha Genduso",
+  //     description: "OT OT OT TO TOT ",
+  //     date: new Date(),
+  //     comments:[],
+  //     votes:0
+  //   },
+  //   {
+  //     title: "Lunch Boxes",
+  //     image:"https://s-media-cache-ak0.pinimg.com/236x/73/b9/c2/73b9c268163bf0af8e4609b6a3b92469.jpg",
+  //     author: "Lisa Frank",
+  //     description: "Aliens are from China",
+  //     date: new Date(),
+  //     comments:[],
+  //     votes:0
+  //   },
+  // ];
 
 
   $scope.votecount = function (post) {
-  post.votes++;
+    post.votes++;
   };
   $scope.downvote= function (post) {
-  post.votes--;
-};
+    post.votes--;
+  };
+
+
 
 
 });
