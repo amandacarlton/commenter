@@ -1,58 +1,73 @@
 extends layout
 
 block content
-  div(ng-controller="Post")
+  div(ng-controller="things")
+    
+    p(ng-click="showform()") Add a comment
+    select(ng-model="sort" ng-init="sort='votes'")
+      option(value='votes') Votes
+      option(value='date') Date
+      option(value='title') Title
+    input(type="text" placeholder="Search" ng-model="searchText")
     div
-      form(ng-submit="addcomment()")
+      form(ng-show="clicked"  ng-submit="addcomment()")
         label(for="title") Title
         p
-        input(type="text" ng-model="title" name="title" id="title")
+        input(type="text" ng-model="title" name="title" id="title" required)
         p
         label(for="author") Author
         p
-        input(type="text" ng-model="author" name="author" id="author")
+        input(type="text" ng-model="author" name="author" id="author" required)
         p
         label(for="image") Image URL
         p
-        input(type="text" ng-model="image" name="image" id="image")
+        input(type="text" ng-model="image" name="image" id="image" required)
         p
         label(for="description") Description
         p
-        input(type="text" ng-model="description" name="description" id="description")
+        input(type="text" ng-model="description" name="description" id="description" required)
         p
         input(type="submit" value="Post")
-    div
-      div.outside(ng-repeat="post in posts")
-        div.pic
+    div.outside(ng-controller="things" ng-animate="'animate'" class="item" ng-repeat="post in posts | orderBy:sort: reverse=true | filter:searchText")
+      div.pic
+        p
+        img(ng-src="{{post.image}}" alt="Description")
+      div.info
+        div.title
+          p 
+          {{post.title}} | 
+          i(ng-click="votecount(post)").fa.fa-arrow-up 
+          &nbsp;
+          i(ng-click="downvote(post)").fa.fa-arrow-down
+          {{post.votes}}
+        div.author
+          p 
+          {{post.author}}
+        div.description
           p
-          img(ng-src="{{post.image}}" alt="Description")
-        div.info
-          div.title
-            p 
-            {{post.title}} | 
-            i(ng-click="votecount(post)").fa.fa-arrow-up 
-            &nbsp;
-            i(ng-click="downvote(post)").fa.fa-arrow-down
-            {{post.votes}}
-          div.author
-            p 
-            {{post.author}}
-          div.description
-            p
-            Strong Description: 
-            {{post.description}}
-            p
-            i.fa.fa-calendar &nbsp; {{post.date|date:"fullDate"}} &nbsp| &nbsp;
-            i.fa.fa-comment &nbsp; 
-            {{post.comments.length}} &nbsp;
-            ng-pluralize(count="post.comments.length"
-                     when="{1: 'comment',\
-                       'other': 'comments'}")
-            &nbsp; | &nbsp;
-            i.fa.fa-pencil &nbsp Add a comment
-
+          Strong Description: 
+          {{post.description}}
+          p
+          i.fa.fa-calendar &nbsp; {{post.date|date:"fullDate"}} &nbsp| &nbsp;
+          i(ng-click="showseecomments()").fa.fa-comment &nbsp; 
+          {{post.comments.length}} &nbsp;
+          ng-pluralize(count="post.comments.length"
+                   when="{1: 'comment',\
+                     'other': 'comments'}")
+          &nbsp; | &nbsp;
+          i(ng-click="showcomment()").fa.fa-pencil &nbsp Add a comment
+          form(ng-show="commentbox" ng-submit="pushComment(post)")
+             label(for="commentAuthor") Author
+             input(type="text" ng-model="commentAuthor")
+             label(for="commentText") Comment
+             input(type="text" ng-model="commentText")
+             input(type="submit" value="Comment")
+          div(ng-show="seecomments" ng-repeat="comment in post.comments")
+            {{comment.author}}: {{comment.comment}}
         
-  script(src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js')
-  script(src='//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js')
+
+      
   script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.js')
+  script(src='/bower_components/angular-animate/angular-animate.js')
+  script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js')
   script(src="../javascripts/angular.js") 

@@ -1,10 +1,42 @@
-var app = angular.module("reddit", []);
+var app = angular.module("reddit", ['ngAnimate']);
 
-app.controller("Post", function ($scope) {
-  $scope.posts=[];
+app.controller("things", function ($scope) {
+
+  $scope.pushComment = function (post) {
+    console.log($scope.commentAuthor);
+    post.comments.push({
+      author:$scope.commentAuthor,
+      comment:$scope.commentText
+    });
+      $scope.commentAuthor="";
+      $scope.commentText="";
+  };
+
+
+  $scope.posts=[{
+    title:"hi",
+    author:"Amanda",
+    description:"yo",
+    comments:[
+      {author: 'me',
+      comment: 'sucks'
+    }
+    ]
+  }];
+
+
 
   $scope.addcomment = function() {
-  $scope.posts.push({title:$scope.title, author:$scope.author, description:$scope.description, date:new Date(), image:$scope.image, votes:0, comments:[]});
+  $scope.posts.push(
+    {
+      title: $scope.title,
+      author: $scope.author,
+      description: $scope.description,
+      date: new Date(),
+      image: $scope.image,
+      votes: 0,
+      comments: []
+    });
    console.log($scope.title);
    console.log(($scope.posts));
   $scope.title = '';
@@ -12,6 +44,35 @@ app.controller("Post", function ($scope) {
   $scope.description='';
   $scope.image='';
 };
+
+  $scope.clicked=false;
+  $scope.showform=function () {
+    if($scope.clicked===false){
+    $scope.clicked=true;
+  }else{
+    $scope.clicked=false;
+  }
+};
+
+  $scope.commentbox=false;
+  $scope.showcomment=function () {
+    if($scope.commentbox===false){
+    $scope.commentbox=true;
+  }else{
+    $scope.commentbox=false;
+  }
+  };
+
+  $scope.seecomments=false;
+  $scope.showseecomments=function () {
+    if($scope.seecomments===false){
+    $scope.seecomments=true;
+  }else{
+    $scope.seecomments=false;
+  }
+  };
+
+
 //   $scope.posts = [
 //   {
 //     title: "Lets Go Swimming",
@@ -42,6 +103,7 @@ app.controller("Post", function ($scope) {
 //     votes:0
 //   },
 // ];
+
 
   $scope.votecount = function (post) {
   post.votes++;
