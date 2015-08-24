@@ -25,9 +25,10 @@ app.controller("things", function ($scope) {
     author:"Amanda",
     description:"yo",
     votes:0,
+    image:'http://static.tumblr.com/43d3385d37d88fc004032e1cfa3a711d/ev6og57/aixnrg5sx/tumblr_static_5f6889o6y1440g0kw0ko40wsw.jpg',
     comments:[
-      {author: 'me',
-      comment: 'sucks'
+      {author: 'acc',
+      comment: 'piggy'
     }
   ]
 }];
