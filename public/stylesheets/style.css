@@ -80,6 +80,6 @@ div{
   opacity:1;
 }
 
-p .help-block{
-  color:red;
+.has-error{
+  color: red;
 }
